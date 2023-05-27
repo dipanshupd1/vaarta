@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&family=Josefin+Sans&family=Karma&family=Poppins:ital,wght@1,200&family=Rajdhani&family=Roboto+Condensed:wght@300&family=Secular+One&family=Teko:wght@500&display=swap");
+#home-main-container {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  padding: 3rem;
+  background-color: rgb(21, 0, 36);
+}
+
+#home-title {
+  color: rgb(0, 242, 255);
+  font-family: "Karma", serif;
+  font-weight: 600;
+  margin-top: 0rem;
+  font-size: 3rem;
+}
+
+#home-main-para {
+  color: rgb(255, 255, 255);
+  font-size: 0.8rem;
+  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+#login-signup-toggle {
+  text-align: center;
+  margin: 1rem;
+  text-align: center;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+}
+#login-signup-toggle span {
+  color: white;
+  margin: 5px 2rem 5px 2rem;
+  font-family: "Secular One", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 200;
+  cursor: pointer;
+  padding: 4px 8px 4px 8px;
+  opacity: 0.8;
+  border-radius: 8px;
+}
+
+#login-main-div {
+  margin: 2rem;
+  padding: 1rem;
+  color: white;
+}
+
+.login-form-para {
+  font-size: 1.1rem;
+  font-family: "Rajdhani", sans-serif;
+  padding-bottom: 10px;
+}
+
+.login-form {
+  background: none;
+  border: none;
+  border-bottom: 2px solid rgb(0, 242, 255);
+  outline: none;
+  color: white;
+  width: 25vw;
+  padding: 0.4rem 0 0.4rem 1rem;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-family: "Times New Roman", Times, serif;
+  transition: 100ms;
+}
+.login-form:focus {
+  border: 2px solid rgb(0, 242, 255);
+  border-radius: 0.4rem;
+}
+.login-form:focus::-moz-placeholder {
+  color: white;
+}
+.login-form:focus::placeholder {
+  color: white;
+}
+.login-form::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(21, 0, 36);
+  opacity: 0.7;
+}
+.login-form::placeholder {
+  font-size: 0.9rem;
+  color: rgb(21, 0, 36);
+  opacity: 0.7;
+}
+
+#login-btn {
+  background: none;
+  border: none;
+  color: white;
+  margin: 2rem;
+  width: 25vw;
+  background-color: rgb(0, 242, 255);
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: "Secular One", sans-serif;
+  font-weight: 700;
+}
+
+#signup-main-div {
+  color: white;
+}
+
+#signup-btn {
+  background: none;
+  border: none;
+  color: white;
+  margin: 2rem;
+  width: 25vw;
+  background-color: rgb(117, 120, 120);
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  color: black;
+  font-weight: 700;
+  cursor: not-allowed;
+  font-family: "Secular One", sans-serif;
+  font-weight: 700;
+}/*# sourceMappingURL=App.css.map */
