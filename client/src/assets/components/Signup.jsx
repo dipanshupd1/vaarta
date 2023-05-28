@@ -1,9 +1,11 @@
 import React,{useState,useRef} from 'react'
+import axios from 'axios'
 
 function Signup() {
     let changeBtnStyle={}
     const cpasschange=useRef(null)
     const passchange=useRef(null)
+    const namechange=useRef(null)
     const [cursorDisable,setCursorDisabled]=useState(true)
 
     const [registerData,setRegisterData]=useState({
@@ -37,11 +39,20 @@ if(!cursorDisable){
 
 // console.log(cursorDisable);
 
-    const handleRegisterSubmit=(e)=>{
+    const handleRegisterSubmit=async(e)=>{
         e.preventDefault();
-    let userName=registerData.userRegister;
-    let password=registerData.passwordRegister
-        console.log(userName,password)
+    let userName=namechange.current.value
+    let password=namechange.current.value
+
+    try {
+           const resp=await axios.post("http://localhost:5000/signup",{
+            userName,password
+           }) 
+           console.log(resp.data);
+        } catch (error) {
+            console.log(error);
+        }
+
         setRegisterData({
             userRegister:"",
             passwordRegister:'',
@@ -54,7 +65,7 @@ if(!cursorDisable){
        <form onSubmit={handleRegisterSubmit} >
        <br />
         <p className='login-form-para'>Create Your Username</p>
-        <input type="text" name="userRegister" className='login-form' onChange={registerChange} value={registerData.userRegister} required={true}/><br /><br /><br />
+        <input type="text" name="userRegister" className='login-form' onChange={registerChange} value={registerData.userRegister} required={true} ref={namechange}/><br /><br /><br />
         <p className='login-form-para'>Create your Password</p>
         <input type="text" name="passwordRegister" className='login-form' onChange={registerChange} value={registerData.passwordRegister} ref={passchange} placeholder='Minimum 5 characters'/> <br /><br /><br />
         <p className='login-form-para'>Confirm your Password</p>
