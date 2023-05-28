@@ -7,8 +7,21 @@ function Chatbox() {
 
 const socket=io('http://localhost:5000')
 
+socket.on("connect",()=>{
+    // console.log(socket.id);
+   
+})
+
+
+
 const handleSubmit=(e)=>{
     e.preventDefault()
+
+    socket.emit("send",{
+        name:"sender",
+        msg:"hii"
+    })
+
     const containter=document.getElementById('chat-container')
     const msgBox=document.createElement('div')
     msgBox.classList.add('chat-me')

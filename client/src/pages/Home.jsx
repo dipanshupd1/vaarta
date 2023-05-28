@@ -4,6 +4,7 @@ import Signup from '/src/assets/components/Signup.jsx'
 
 
 function Home() {
+  
   const [loginState, setLoginState]=useState(true)
  let loginBtnStyle,registerBtnStyle={}
  let mainheight={}

@@ -1,7 +1,15 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef,useContext} from 'react'
+import UserContext from '../../contexts/UserContext'
+import Cookies from "js-cookie"
+
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
+
 function Signup() {
+    const navigate=useNavigate()
+    // const getUserName=useContext(UserContext)
+
     let changeBtnStyle={}
     const cpasschange=useRef(null)
     const passchange=useRef(null)
@@ -42,13 +50,19 @@ if(!cursorDisable){
     const handleRegisterSubmit=async(e)=>{
         e.preventDefault();
     let userName=namechange.current.value
-    let password=namechange.current.value
+    let password=passchange.current.value
 
     try {
            const resp=await axios.post("http://localhost:5000/signup",{
             userName,password
            }) 
            console.log(resp.data);
+           if(resp.data.msg=="successful"){
+            Cookies.set("username",userName)
+            // getUserName.loggedUser=userName
+            navigate('/chat')
+           }
+           
         } catch (error) {
             console.log(error);
         }
@@ -61,6 +75,7 @@ if(!cursorDisable){
 
     }
   return (
+    <>
     <div id='signup-main-div'>
        <form onSubmit={handleRegisterSubmit} >
        <br />
@@ -72,8 +87,12 @@ if(!cursorDisable){
         <input type="text" name="cPasswordRegister" className='login-form' onChange={registerChange} value={registerData.cPasswordRegister} ref={cpasschange} /> <br />
         <input type="submit" value={"Register"} id='signup-btn' style={changeBtnStyle} disabled={cursorDisable}/>
     </form>
+   
     </div>
+    </>
   )
 }
 
+
 export default Signup
+

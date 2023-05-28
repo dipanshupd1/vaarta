@@ -127,4 +127,12 @@
   cursor: not-allowed;
   font-family: "Secular One", sans-serif;
   font-weight: 700;
+}
+
+#login-error-msg {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  display: none;
 }/*# sourceMappingURL=App.css.map */

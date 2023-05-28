@@ -42,6 +42,8 @@
 }
 .userchat:hover {
   background-color: rgb(60, 10, 98);
+  background-color: rgb(16, 212, 226);
+  color: black;
 }
 
 .userimagediv {
