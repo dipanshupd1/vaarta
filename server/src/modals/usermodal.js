@@ -12,6 +12,9 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
+    friends:[{
+        friendName:{type:String}
+    }],
     chats:[{
         msgto:{type:String},
         msgvalue:{type:String}

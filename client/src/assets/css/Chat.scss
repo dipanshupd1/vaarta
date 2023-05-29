@@ -23,10 +23,20 @@
     // padding: 1rem;
     font-size: 1.8rem;
     display: flex;
+    justify-content: space-between;
    padding: 0.8rem 0 0.8rem 2.5rem ;
-//    border-bottom: 2px solid rgb(105, 5, 125);
+//    border: 2px solid rgb(105, 5, 125);
 //    background-color:  rgba(49, 6, 81, 0.302);
    text-shadow: 2px 2px 1px black;
+   & div{
+    align-items: center;
+   }
+}
+#add-chat{
+    margin-right: 1rem;
+    font-size: 2rem;
+    align-items: center;
+    cursor: pointer;
 }
 #left-inner-body{
     margin-top: 1rem;
@@ -36,6 +46,80 @@
     overflow-y: scroll;
     // padding: 1rem;
 
+}
+#friend-tab{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    // border: 2px solid red;
+    border-radius: 1rem;
+    width: 100%;
+    // height: 25%;
+    height: 0;
+    font-size: 1.2rem;
+    background-color: rgb(11, 175, 183);
+    color: black;
+    // padding-top: 1rem;
+    // padding-bottom: 1rem;
+    transition: 500ms;
+    overflow: hidden;
+    // padding: 1rem;
+   
+}
+#input-friend-id{
+    border-radius: 1rem;
+    width: 70%;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0.5rem 0 0.35rem 0;
+    background: none;
+    border: none;
+    outline: none;
+    border: 2px solid black;
+    background-color: aliceblue;
+    color: rgb(0, 0, 0);
+    // background-color: rgb(131, 6, 131);
+
+    // margin-left: 10%;
+}
+#cancel-btn{
+background:none;
+border: none;
+margin-left: 6rem;
+// border: 2px solid red;
+background-color: rgb(171, 5, 5);
+padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+font-style: 1.2rem;
+margin-top: 0.2rem;
+color: white;
+cursor: pointer;
+border-radius: 0.4rem;
+&:hover{
+    background-color: rgb(124, 4, 4);
+}
+}
+#friend-submit{
+
+    margin-left: 1rem;
+    background:none;
+    border: none;
+    // border: 2px solid green;
+    padding: 0.5rem 0.5rem 0.55rem 0.5rem;
+    margin-top: 0.2rem;
+    font-style: 1.2rem;
+    background-color: rgb(5, 137, 5);
+    border-radius: 0.2rem;
+    cursor: pointer;
+    color: white;
+    &:hover{
+        background-color: rgb(3, 103, 3);
+    }
+}
+#friend-invalid{
+    font-size: 0.8rem;
+   color: rgb(152, 5, 5);
+   display: none;
 }
 .userchat{
     font-size: 1.3rem;

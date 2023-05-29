@@ -1,26 +1,57 @@
-import React ,{useRef}from 'react'
+import React ,{useEffect, useRef, useState}from 'react'
 import img from "/src/assets/user.png"
 import {io} from "socket.io-client"
+import Cookies from 'js-cookie'
 
 function Chatbox() {
     const sentMsg=useRef()
 
-const socket=io('http://localhost:5000')
-
-socket.on("connect",()=>{
-    // console.log(socket.id);
    
-})
+    const socket=io('http://localhost:5000')
+    useEffect(()=>{
+
+        const userLogged=Cookies.get("username")
+       
+
+        socket.on("connect",()=>{
+            socket.id=userLogged
+            console.log('your socket id is ',socket.id);
+              socket.emit('userlogged',{name:userLogged})
+        })
+
+    },[])
+
+  
+    socket.on('recieve',(msg)=>{
+        console.log("from server ",msg)
+        recievedMsg(msg.msg);
+        })
+
+
+    const recievedMsg=(text)=>{
+        const containter=document.getElementById('chat-container')
+        const msgBox=document.createElement('div')
+        msgBox.classList.add('chat-other')
+        msgBox.innerText=text
+        containter.appendChild(msgBox) 
+    }
+
+    function sentToServer(msg){
+
+        socket.emit("send",{
+            name:"sender",
+            msg
+        })
+    }
+  
 
 
 
 const handleSubmit=(e)=>{
     e.preventDefault()
-
-    socket.emit("send",{
-        name:"sender",
-        msg:"hii"
-    })
+        let msg=sentMsg.current.value
+        sentToServer(msg);
+    
 
     const containter=document.getElementById('chat-container')
     const msgBox=document.createElement('div')
@@ -37,14 +68,12 @@ const handleSubmit=(e)=>{
         <div id="chatbox-name"><h4>user1</h4></div>
      </div>
      <div id="chat-container">
-        <div className="chat-me">hii</div>
-        <div className="chat-other">hii</div>
   
      </div>
      <div id="type-msg">
         <form onSubmit={handleSubmit}>
             <input type="text" name="typeMsg" id="msg-inp" placeholder='Type Your Message' ref={sentMsg} />
-            <input type="submit" name="Send" id="send-msg" value="Send"/>
+            <input type="submit"  id="send-msg" value="Send"/>
         </form>
      </div>
  </div>
