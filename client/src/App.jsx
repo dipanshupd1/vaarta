@@ -1,5 +1,7 @@
 
 import './App.css'
+import '../src/assets/css/Chat.css'
+import '../src/assets/css/media.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Home from '/src/pages/Home.jsx'
 import Chat from '/src/pages/Chat.jsx'

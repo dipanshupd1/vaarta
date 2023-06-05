@@ -1,0 +1,128 @@
+@media (max-width:905px){
+    #chat-main-left{
+        /* min-width: 190px; */
+    }
+    #cancel-btn{
+        margin-left: 0rem;
+        /* background-color: rgb(224, 136, 136); */
+    }
+    #friend-tab{
+        font-size: 1rem;
+    }
+    #left-inner-body{
+        height:77%;
+    }
+    #input-friend-id{
+        padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+    }
+    #userimagediv{
+        width: 50px;
+        margin-left: 1rem;
+    }
+
+}
+
+@media (max-width:730px){
+
+    #msg-inp{
+        width: 75%;
+        padding: 1.2rem;
+    }
+    #userimagediv{
+        width: 40%;
+        /* margin-left: 1rem; */
+    }
+    .chat-me{
+        padding: 0.6rem 0.8rem 0.6rem 0.8rem;
+        font-size: 1rem;
+    }
+    .chat-other{
+        padding: 0.6rem 0.8rem 0.6rem 0.8rem;
+        font-size: 1rem;
+    }
+    #send-msg{
+        font-size: 0.9rem;
+    padding: 0.7rem;
+    }
+}
+
+@media (max-width:640px){
+    #home-title{
+        font-size: 2.5rem ;
+    }
+    #home-main-para{
+        font-size: 0.7rem;
+    }
+    #login-signup-toggle span{
+        font-size: 0.9rem;
+    }
+.login-form-para{
+    font-size: 0.9rem;
+}
+.login-form{
+    width:30vw;
+    font-size: 0.9rem;
+}
+#login-btn{
+    font-size: 0.9rem;
+}
+#signup-btn{
+    font-size: 0.9rem;
+}
+
+}
+
+@media (max-width:600px){
+
+   
+    #add-chat{
+        margin:0;
+        /* border: 2px solid red; */
+        font: 0.9rem;
+        margin-right: 10px;
+    }
+    #chat-title{
+        margin: 0;
+        /* border: 2px solid red; */
+    }
+    #left-inner-title{
+        font-size: 1.1rem;
+        display: flex;
+        padding: 0;
+        text-align: column;
+        align-items: center;
+        /* justify-content: center; */
+        /* border: 2px solid red; */
+    }
+    #menu-chat{
+        display:block;
+        margin:0;
+        float: left;
+        /* border: 2px solid red; */
+    }
+   
+}
+@media (max-width:420px){
+    #home-main-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #home-title{
+        font-size: 2rem ;
+    }
+    #home-main-para{
+        font-size: 0.6rem;
+    }
+
+    #login-signup-toggle{
+        padding: 0.5rem 0rem 0.5rem 0rem;
+    }
+    #login-signup-toggle span{
+        margin: 5px 1rem 5px 1rem;
+    }
+    .login-form{
+        width:35vw;
+        font-size: 0.9rem;
+    }
+}

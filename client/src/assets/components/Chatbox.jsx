@@ -1,83 +1,158 @@
-import React ,{useEffect, useRef, useState}from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
 import img from "/src/assets/user.png"
-import {io} from "socket.io-client"
+import { io } from "socket.io-client"
 import Cookies from 'js-cookie'
+import { AiFillDelete } from 'react-icons/ai'
 
-function Chatbox() {
-    const sentMsg=useRef()
+function Chatbox(props) {
+    const sentMsg = useRef()
+    const newfriend = props.name
+    const socket = io('http://localhost:5000')
+    useEffect(() => {
+        const userLogged = Cookies.get("username")
 
-   
-    const socket=io('http://localhost:5000')
-    useEffect(()=>{
+        socket.on("connect", () => {
+            socket.id = userLogged
+            // console.log('your socket id is ',socket.id);
+            socket.emit('userlogged', { name: userLogged, friend: newfriend })
+        })
+// Getting messages
+        const msgContainer = document.getElementById("chat-container")
+        msgContainer.innerHTML = ""
+        getmsg()
+}, [newfriend])
 
-        const userLogged=Cookies.get("username")
-       
+// ############################# Use Effect Completed########################## 
 
-        socket.on("connect",()=>{
-            socket.id=userLogged
-            console.log('your socket id is ',socket.id);
-              socket.emit('userlogged',{name:userLogged})
+    async function getmsg() {
+        const loggeduser = Cookies.get('username')
+        const friend = newfriend
+        const msgdata = await axios.post("http://localhost:5000/findmsg", {
+            loggeduser
         })
 
-    },[])
+        if (msgdata.data.msg) {
+            const msgArray = msgdata.data.msgdata
+            const containter = document.getElementById('chat-container')
+            msgArray.map((ele) => {
+                // console.log(ele);
+                const msgBox = document.createElement('div')
+                if (ele.msgfrom == loggeduser && ele.msgto == friend) {
+                    msgBox.classList.add('chat-me')
+                    msgBox.innerText = ele.msgvalue
+                    containter.appendChild(msgBox)
+                }
 
-  
-    socket.on('recieve',(msg)=>{
-        console.log("from server ",msg)
-        recievedMsg(msg.msg);
+                else if (ele.msgfrom == friend && ele.msgto == loggeduser) {
+                    msgBox.classList.add('chat-other')
+                    msgBox.innerText = ele.msgvalue
+                    containter.appendChild(msgBox)
+                }
+            })
+        }
+    }
+    // ###################### above function is to get msg from database ################
+
+    useEffect(() => {
+        socket.on('recieve', (msg) => {
+            // console.log("from server ",msg)
+            recievedMsg(msg);
         })
+        return (() => socket.off("recieve"))
+    }, [socket, newfriend])
 
 
-    const recievedMsg=(text)=>{
-        const containter=document.getElementById('chat-container')
-        const msgBox=document.createElement('div')
-        msgBox.classList.add('chat-other')
-        msgBox.innerText=text
-        containter.appendChild(msgBox) 
+
+    const recievedMsg = async (text) => {
+        const loggeduser = Cookies.get('username')
+        const friend = newfriend
+        // console.log(`from server ${text.from} and from client ${newfriend}`)
+        console.log(friend, text.from);
+        console.log("done");
+        if (text.from == friend) {
+            const containter = document.getElementById('chat-container')
+            const msgBox = document.createElement('div')
+            msgBox.classList.add('chat-other')
+            msgBox.innerText = text.msg
+            containter.appendChild(msgBox)
+        }
+
     }
 
-    function sentToServer(msg){
-
-        socket.emit("send",{
-            name:"sender",
+    function sentToServer(msg, frnd) {
+        const loggeduser = Cookies.get('username')
+        socket.emit("send", {
+            to: frnd,
+            from: loggeduser,
             msg
         })
     }
-  
+
+    const handleSubmit = async (e) => {
+        const loggeduser = Cookies.get('username')
+        const friend = newfriend
+        e.preventDefault()
+        let msg = sentMsg.current.value
+        sentToServer(msg, friend);
+        const containter = document.getElementById('chat-container')
+        const msgBox = document.createElement('div')
+        msgBox.classList.add('chat-me')
+        msgBox.innerText = sentMsg.current.value
+        containter.appendChild(msgBox)
+        sentMsg.current.value = ''
+
+        const msgdatabase = await axios.post("http://localhost:5000/savemsg", {
+            msg: msg,
+            loggeduser,
+            friend
+        })
+
+        if (msgdatabase.data.msg) {
+            // console.log("from database ",msgdatabase.data)
+        }
+        else (
+            console.log("error occured")
+        )
+    }
 
 
+    const delchats=async()=>{
+        console.log('clicked');
+        const loggedUser=Cookies.get('username')
+        console.log(loggedUser);
+        const delmsg = await axios.post("http://localhost:5000/delchat", {
+            loggedUser,
+            friend:newfriend
+        })
+        console.log(delmsg.data.msg)
+        if(delmsg.data.msg){
+      
+            window.location.reload()
+        }
+        
+    }
 
-const handleSubmit=(e)=>{
-    e.preventDefault()
-        let msg=sentMsg.current.value
-        sentToServer(msg);
-    
 
-    const containter=document.getElementById('chat-container')
-    const msgBox=document.createElement('div')
-    msgBox.classList.add('chat-me')
-    msgBox.innerText=sentMsg.current.value
-    containter.appendChild(msgBox)
-    sentMsg.current.value=''
+    return (
+        <div id="chat-main-right" style={props.css}>
+            <div id="chat-box-title-bar">
+                <p id="chatbox-image"><img src={img} alt="" /></p>
+                <div id="chatbox-name"><h4>{newfriend}</h4></div>
+                <div id="delete" onClick={delchats}><AiFillDelete /></div>
+            </div>
 
-}
-  return (
-    <div id="chat-main-right">
-    <div id="chat-box-title-bar">
-        <p id="chatbox-image"><img src={img} alt="" /></p>
-        <div id="chatbox-name"><h4>user1</h4></div>
-     </div>
-     <div id="chat-container">
-  
-     </div>
-     <div id="type-msg">
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="typeMsg" id="msg-inp" placeholder='Type Your Message' ref={sentMsg} />
-            <input type="submit"  id="send-msg" value="Send"/>
-        </form>
-     </div>
- </div>
-  )
+            <div id="chat-container">
+
+            </div>
+            <div id="type-msg">
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="typeMsg" id="msg-inp" placeholder='Type Your Message' ref={sentMsg} />
+                    <input type="submit" id="send-msg" value="Send" />
+                </form>
+            </div>
+        </div>
+    )
 }
 
 export default Chatbox

@@ -35,9 +35,10 @@
 
 #login-signup-toggle{
     // border: 2px solid red;
+    
     // width: 40vw;
     text-align: center;
-    margin: 1rem;
+    margin: 1rem 0 1rem 0;
     text-align: center;
     padding: 0.5rem 2rem 0.5rem 2rem;
 
@@ -64,7 +65,7 @@
 
 
 #login-main-div{
-    margin: 2rem;
+    margin-top: 2rem;
     padding: 1rem;
     color: white;
     // border: 2px solid red;
@@ -77,6 +78,7 @@
 }
 
 .login-form{
+    // border: 2px solid red;
     background: none;
     border: none;
     border-bottom: 2px solid rgb(0, 242, 255);
@@ -127,6 +129,7 @@
 
 #signup-main-div{
     color: white;
+    // border: 2px solid red;
     
 }
 #signup-btn{
