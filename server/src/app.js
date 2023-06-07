@@ -19,7 +19,7 @@ mongoose.connect(process.env.DB_URL,{
 let server=http.createServer(app)
 const io=socketIO(server,{
     cors:{
-        origin:[process.env.CL_DOMAIN]
+        origin:true
     }
 })
 
