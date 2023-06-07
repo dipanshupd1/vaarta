@@ -17,11 +17,12 @@ mongoose.connect(process.env.DB_URL,{
 
                
 let server=http.createServer(app)
-const io=socketIO(server,{
+const io=new socketIO.Server(server,{
     cors:{
-        origin:true
+        origin:true,
+        methods:['GET','POST']
     }
-})
+});
 
 app.use(express.json())
 app.use(cors())
