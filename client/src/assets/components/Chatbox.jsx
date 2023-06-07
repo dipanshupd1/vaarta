@@ -17,7 +17,7 @@ const clickedMenu=()=>{
 }
     const sentMsg = useRef()
     const newfriend = props.name
-    const socket = io('http://localhost:5000')
+    const socket = io(import.meta.env.VITE_CL_DOMAIN)
     useEffect(() => {
         const userLogged = Cookies.get("username")
 
