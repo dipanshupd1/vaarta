@@ -9,7 +9,7 @@ function Chatlist(props) {
     let getdata = useContext(FrndContext)
 
     const friendClicked = () => {
-        getdata(props.frndname)
+        getdata.getdata(props.frndname)
 
         // console.log("props.name ",props.frndname)
     }

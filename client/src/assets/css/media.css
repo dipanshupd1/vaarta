@@ -19,13 +19,24 @@
         width: 50px;
         margin-left: 1rem;
     }
+    #input-friend-id{
+        padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+        font-size: 0.8rem;
+        margin: 4px;
+    }
+    #cancel-btn {
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    }
+    #friend-submit{
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    }
 
 }
 
 @media (max-width:730px){
 
     #msg-inp{
-        width: 75%;
+        width: 85%;
         padding: 1.2rem;
     }
     #userimagediv{
@@ -69,6 +80,17 @@
 #signup-btn{
     font-size: 0.9rem;
 }
+#input-friend-id{
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    margin: 4px;
+}
+#cancel-btn {
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+}
+#friend-submit{
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+}
 
 }
 
@@ -101,6 +123,59 @@
         /* border: 2px solid red; */
     }
    
+    #chat-main-left{
+
+        /* width: 200px; */
+    }
+    #input-friend-id{
+        padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+        font-size: 0.8rem;
+        margin: 0;
+        width: 80%;
+    }
+    #cancel-btn {
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+    #friend-submit{
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+   
+}
+@media (max-width:525px){
+    #toggle{
+        display: block;
+    }
+    
+    #cancel-btn {
+        padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    }
+    #friend-submit{
+        padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    }
+    #friend-tab{
+        width: 100%;
+        margin: 0;
+        font: 1rem;
+    }
+    #delfinal {
+    font-size: 1rem;
+    }
+    #canfinal {
+        font-size: 1rem;
+        margin-left: 0;
+    }
+    #send-msg{
+        padding: 0.4;
+        font-size: 0.6rem;
+    }
+    #msg-inp{
+        width: 75%;
+    }
+    #banner-text-four{
+        letter-spacing: 0;
+        font-size: 0.6rem;
+    }
+   
 }
 @media (max-width:420px){
     #home-main-container{
@@ -124,5 +199,31 @@
     .login-form{
         width:35vw;
         font-size: 0.9rem;
+    }
+    #delfinal {
+        font-size: 0.8rem;
+        }
+        #canfinal {
+            font-size: 0.8rem;
+            margin-left: 0;
+        }
+        #banner-text-four{
+            letter-spacing: 0;
+            font-size: 0.5rem;
+        }
+        #banner-text-one{
+            font-size: 0.7rem;
+        }
+}
+@media (max-width:350px){
+    #msg-inp{
+        width: 65%;
+    }
+    #banner-text-one{
+        font-size: 0.7rem;
+    }
+    #banner-text-four{
+        letter-spacing: 0;
+        font-size: 0.4rem;
     }
 }

@@ -10,6 +10,11 @@
   height: 100%;
   color: white;
 }
+#toggle{
+  color: white;
+  padding-left: 1rem;
+  display: none;
+}
 
 #left-inner-title {
   width: 100;

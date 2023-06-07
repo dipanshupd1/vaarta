@@ -125,21 +125,31 @@ const [showMenu,setShowMenu]=useState(true)
    let titlestyle={}
    let boxstyle={}
   let chatboxstyle={}
-const menuClicked=()=>{
-  setShowMenu(prev=>!prev)
+  let delbtnStyle={}
+const menuClicked=(set)=>{
+  // console.log(set)
+  setShowMenu(set)
 }
 
 if(!showMenu){
-   menuStyle={transform:'translateX(-100%)',transition:'1s'}
+   menuStyle={transform:'translateX(-100%)',transition:'500ms'}
    titlestyle={display:'none'}
-   boxstyle={width:'10vw',transition:'1s'}
-   chatboxstyle={width:'90vw',transition:'1s'}
+   boxstyle={width:'0vw',transition:'500ms'}
+   chatboxstyle={width:'100vw',transition:'500ms'}
+   delbtnStyle={display:'block'}
 }
 else{
-  menuStyle={transform:'translateX(0%)',transition:'1s'}
+  menuStyle={transform:'translateX(0%)',transition:'500ms'}
   titlestyle={display:'block'}
-  boxstyle={width:'30vw',transition:'1s'}
-  chatboxstyle={width:'70vw',transition:'1s'}
+  if(screen.width>525){
+    boxstyle={width:'30vw',transition:'500ms'}
+  chatboxstyle={width:'70vw',transition:'500ms'}
+  }
+  else{
+    boxstyle={width:'40vw',transition:'500ms'}
+  chatboxstyle={width:'60vw',transition:'500ms'}
+  }
+  delbtnStyle={display:'none'}
 }
 
 
@@ -148,10 +158,10 @@ else{
 
 
   return (
-    <FrndContext.Provider value={getdata}>
+    <FrndContext.Provider value={{getdata,menuClicked}}>
     <div id='chat-main-div'>
       <div id="chat-main-left" style={boxstyle}>
-        <div id='left-inner-title' ><div id="menu-chat" onClick={menuClicked}><AiOutlineMenu/></div><div style={titlestyle} id='chat-title'>CHATS</div> <div id='add-chat' onClick={addFriend} style={titlestyle}>+</div></div>
+        <div id='left-inner-title' ><div id="menu-chat"></div><div style={titlestyle} id='chat-title'>CHATS</div> <div id='add-chat' onClick={addFriend} style={titlestyle}>+</div></div>
         <div id="left-inner-body" style={menuStyle}>
           <div id="friend-tab" style={cancelStyle}>
             Add Your Friend <br />
@@ -169,7 +179,7 @@ else{
           </div>
         </div>
       </div>
-      {showBanner?<ChatBanner/>:<Chatbox name={clickFriend} css={chatboxstyle}/>}
+      {showBanner?<ChatBanner/>:<Chatbox name={clickFriend} css={chatboxstyle} css2={delbtnStyle} clickd={menuClicked}/>}
       {/* <Chatbox name={clickFriend}/> */}
     </div>
     </FrndContext.Provider>

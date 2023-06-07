@@ -1,11 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState,useContext } from 'react'
 import axios from 'axios'
 import img from "/src/assets/user.png"
 import { io } from "socket.io-client"
 import Cookies from 'js-cookie'
 import { AiFillDelete } from 'react-icons/ai'
+import { AiOutlineMenu } from "react-icons/ai";
+import FrndContext from '../../contexts/UserContext.js'
+import { BsFillSendCheckFill } from "react-icons/bs";
 
 function Chatbox(props) {
+    const [menuClick,setMenuClick]=useState(false)
+    let getdata=useContext(FrndContext)
+const clickedMenu=()=>{
+    setMenuClick(prev=>!prev)
+    getdata.menuClicked(menuClick)
+}
     const sentMsg = useRef()
     const newfriend = props.name
     const socket = io('http://localhost:5000')
@@ -137,9 +146,10 @@ function Chatbox(props) {
     return (
         <div id="chat-main-right" style={props.css}>
             <div id="chat-box-title-bar">
+                <div id='toggle' onClick={clickedMenu}><AiOutlineMenu/></div>
                 <p id="chatbox-image"><img src={img} alt="" /></p>
                 <div id="chatbox-name"><h4>{newfriend}</h4></div>
-                <div id="delete" onClick={delchats}><AiFillDelete /></div>
+                <div id="delete" onClick={delchats} style={props.css2}><AiFillDelete /></div>
             </div>
 
             <div id="chat-container">
@@ -148,7 +158,7 @@ function Chatbox(props) {
             <div id="type-msg">
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="typeMsg" id="msg-inp" placeholder='Type Your Message' ref={sentMsg} />
-                    <input type="submit" id="send-msg" value="Send" />
+                    <button id="send-msg"  ><BsFillSendCheckFill/></button>
                 </form>
             </div>
         </div>
