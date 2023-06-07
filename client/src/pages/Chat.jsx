@@ -25,7 +25,7 @@ const [showMenu,setShowMenu]=useState(true)
 
     const getUser=async()=>{
       const userName=Cookies.get("username")
-      const findUser = await axios.post("http://localhost:5000/search", {
+      const findUser = await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/search`, {
         userName
       })
       // console.log(findUser.data.data)
@@ -85,7 +85,7 @@ const [showMenu,setShowMenu]=useState(true)
     // console.log('user',userLogged)
 
     try {
-      const findUser = await axios.post("http://localhost:5000/find", {
+      const findUser = await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/find`, {
         friendName: friend,
         userLogged
       })

@@ -31,7 +31,7 @@ function Login() {
         let pass=password.current.value
         // console.log(name,pass)
         try {
-           const resp=await axios.post("http://localhost:5000/login",{
+           const resp=await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/login`,{
             userName:name,
             password:pass
            }) 

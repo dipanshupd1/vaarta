@@ -53,7 +53,7 @@ if(!cursorDisable){
     let password=passchange.current.value
 
     try {
-           const resp=await axios.post("http://localhost:5000/signup",{
+           const resp=await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/signup`,{
             userName,password
            }) 
            console.log(resp.data);

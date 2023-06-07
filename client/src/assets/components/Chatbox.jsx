@@ -37,7 +37,7 @@ const clickedMenu=()=>{
     async function getmsg() {
         const loggeduser = Cookies.get('username')
         const friend = newfriend
-        const msgdata = await axios.post("http://localhost:5000/findmsg", {
+        const msgdata = await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/findmsg`, {
             loggeduser
         })
 
@@ -111,7 +111,7 @@ const clickedMenu=()=>{
         containter.appendChild(msgBox)
         sentMsg.current.value = ''
 
-        const msgdatabase = await axios.post("http://localhost:5000/savemsg", {
+        const msgdatabase = await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/savemsg`, {
             msg: msg,
             loggeduser,
             friend
@@ -130,7 +130,7 @@ const clickedMenu=()=>{
         console.log('clicked');
         const loggedUser=Cookies.get('username')
         console.log(loggedUser);
-        const delmsg = await axios.post("http://localhost:5000/delchat", {
+        const delmsg = await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/delchat`, {
             loggedUser,
             friend:newfriend
         })

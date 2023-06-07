@@ -42,7 +42,7 @@ function Chatlist(props) {
 
     const confirmed = async () => {
         const loggedUser = Cookies.get('username')
-        const deluser = await axios.post("http://localhost:5000/del", {
+        const deluser = await axios.post(`${import.meta.env.VITE_CL_DOMAIN}/del`, {
             delFrnd: props.frndname,
             loggedUser
         })

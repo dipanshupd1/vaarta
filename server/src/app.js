@@ -1,12 +1,14 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 const User=require("../src/modals/usermodal.js")
 const http = require('http');
 const cors = require('cors');
+dotenv.config()
 const app=express();
-const mongoUrl=  'mongodb+srv://dipanshupd123:dipanshuvaartaproject12345@cluster0.jredtbo.mongodb.net/?retryWrites=true&w=majority'
-mongoose.connect(mongoUrl,{
+const PORT=process.env.PORT 
+mongoose.connect(process.env.DB_URL,{
     useNewUrlParser:true
 })
                 .then(()=>{
@@ -17,7 +19,7 @@ mongoose.connect(mongoUrl,{
 let server=http.createServer(app)
 const io=socketIO(server,{
     cors:{
-        origin:['http://localhost:5173']
+        origin:[process.env.CL_DOMAIN]
     }
 })
 
@@ -231,4 +233,4 @@ app.post('/findmsg',async(req,res)=>{
 
 })
 
-server.listen(5000)
+server.listen(PORT)
